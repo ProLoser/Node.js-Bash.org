@@ -1,0 +1,39 @@
+<!doctype html>
+<html xmlns:ng="http://angularjs.org" ng:app>
+<head>
+	<title>Bash.org</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://code.angularjs.org/0.10.6/angular-0.10.6.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body ng:controller="App">
+	<a ng:click="load()">Load</a> <a ng:href="#{{bookmark}}">Jump to Bookmark</a> <a href="help.html">Help</a>
+	<form ng:submit="save()">
+		<table cellspacing="0">
+			<tr>
+				<th ng:click="sort('bash_id')">ID</th>
+				<th ng:click="sort('rank')">Rank</th>
+				<th ng:click="sort('quote')">Quote</th>
+				<th>Actions</th>
+			</tr>
+			<tr ng:repeat="(index, quote) in quotes | orderBy:sortField:reverse" ng:class="bookmark==index&&'bookmark'">
+				<td id="{{index}}">{{quote.bash_id}}</td>
+				<td>{{quote.rank}}</td>
+				<td ng:bind="quote.quote | html:'unsafe'"></td>
+				<td class="actions">
+					<a ng:click="edit(quote)">Edit</a>
+					<a ng:click="delete(index)">Delete</a>
+					<a ng:click="mark(index)">Bookmark</a>
+				</td>
+			</tr>
+			<tr>
+				<td><input ng:model="data.bash_id"></td>
+				<td><input ng:model="data.rank"></td>
+				<td><textarea ng:model="data.quote"></textarea></td>
+				<td><input type="submit" ng:bind-attr="{value:scope.editing&&'Update'||'Insert'}"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

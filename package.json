@@ -1,5 +1,12 @@
 {
-  "name":"bash",
-  "node":"0.6.12",
-  "author":"proloser"
+	"name":"bash",
+	"node":"0.6.12",
+	"author":"proloser",
+	"dependencies" : {
+		"restify"		: "*",
+		"mongoose"	:  "*"
+	},
+	"engine": {
+		"node": ">=0.6.11"
+	}
 }

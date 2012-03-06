@@ -29,8 +29,7 @@ function App($http) {
 	scope.load = function(limit, skip) {
 		var url = scope.url + 'quotes.json';
 		$http.get(url).success(function(data, status, headers, config){
-			console.log(data);
-			scope.quotes = data.rows;
+			scope.quotes = data;
 		});
 	};
 	scope.delete = function(index) {

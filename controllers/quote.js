@@ -31,7 +31,7 @@ var quote = mongoose.model('Quote', Quote);
 module.exports = {
 	create: function(req, res, next) {
 		console.log(req.body);
-		quote.save(req.body, function(){
+		new quote(req.body).save(function(){
 			console.log('success');
 			res.send(201);
 		});

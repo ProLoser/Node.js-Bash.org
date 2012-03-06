@@ -85,7 +85,7 @@ function bootController(app, file) {
     var fn = controllerAction(name, plural, action, actions[action]);
     switch(action) {
       case 'index':
-        app.get(prefix + '.:format?', fn);
+        app.get(prefix + '/:limit?/:skip?.:format?', fn);
         break;
       case 'show':
         app.get(prefix + '/:id.:format?', fn);

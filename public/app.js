@@ -5,6 +5,8 @@ function App($http) {
 	scope.url = 'http://localhost:15166/';
 	scope.quotes = [];
 	scope.editing = false;
+	scope.limit = 100;
+	scope.skip = 0;
 	if (localStorage.quotes) {
 		// scope.quotes = JSON.parse(localStorage.quotes);
 	} else {
@@ -18,6 +20,16 @@ function App($http) {
 	scope.$watch('bookmark', function(){
 		localStorage.bookmark = scope.bookmark;
 	});
+	scope.prev = function() {
+		scope.skip -= scope.limit;
+		if (scope.skip < 0)
+		scope.skip = 0;
+		scope.load(scope.limit, scope.skip);
+	};
+	scope.next = function() {
+		scope.skip = parseInt(scope.skip) + parseInt(scope.limit);
+		scope.load(scope.limit, scope.skip);
+	};
 	scope.edit = function(index) {
 		scope.data = scope.quotes[index];
 		scope.editing = index;
@@ -27,7 +39,7 @@ function App($http) {
 		scope.bookmark = index;
 	};
 	scope.load = function(limit, skip) {
-		var url = scope.url + 'quotes.json';
+		var url = scope.url + 'quotes/'+limit+'/'+skip+'.json';
 		$http.get(url).success(function(data, status, headers, config){
 			scope.quotes = data;
 		});

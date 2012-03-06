@@ -37,9 +37,14 @@ module.exports = {
 		});
 	},
 	index: function(req, res, next) {
-		quote.find(function(err, docs) {
-			res.render(docs);
-		});
+		quote
+			.find({})
+			.skip(req.params.skip)
+			.limit(req.params.limit)
+			.desc('rank')
+			.run(function(err, docs) {
+				res.render(docs);
+			});
 	},
 	read: function(req, res, next) {
 		quote.find({ bash_id: req.params.id }, function(err, docs) {

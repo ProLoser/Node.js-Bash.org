@@ -15,3 +15,7 @@ table .actions {
 table .bookmark {
   background: #eee;
 }
+
+textarea {
+  width: 100%;
+}

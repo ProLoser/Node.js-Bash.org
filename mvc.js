@@ -91,10 +91,10 @@ function bootController(app, file) {
         app.get(prefix + '/:id.:format?', fn);
         break;
       case 'add':
-        app.get(prefix + '/:id/add', fn);
+        app.get(prefix + '/add', fn);
         break;
       case 'create':
-        app.post(prefix + '/:id', fn);
+        app.post(prefix, fn);
         break;
       case 'edit':
         app.get(prefix + '/:id/edit', fn);

@@ -1,7 +1,3 @@
-var databaseUrl = "bash"; // "username:password@example.com/mydb"
-var collections = ["quotes"]
-var db = require("mongojs").connect(databaseUrl, collections);
-
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
